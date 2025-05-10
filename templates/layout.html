@@ -1,0 +1,44 @@
+{{define "layout"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.Title}} - Go Web Server Tutorial</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/prism.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Go Web Server Tutorial</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/" class="{{if eq .ActiveNav "home"}}active{{end}}">Home</a></li>
+                    <li><a href="/basic" class="{{if eq .ActiveNav "basic"}}active{{end}}">Basic Concepts</a></li>
+                    <li><a href="/intermediate" class="{{if eq .ActiveNav "intermediate"}}active{{end}}">Intermediate</a></li>
+                    <li><a href="/advanced" class="{{if eq .ActiveNav "advanced"}}active{{end}}">Advanced</a></li>
+                    <li><a href="/restful" class="{{if eq .ActiveNav "restful"}}active{{end}}">RESTful APIs</a></li>
+                    <li><a href="/examples" class="{{if eq .ActiveNav "examples"}}active{{end}}">Examples</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        {{template "content" .}}
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; {{.CurrentYear}} Go Web Server Tutorial. Created for educational purposes.</p>
+        </div>
+    </footer>
+
+    <script src="/static/js/prism.js"></script>
+    <script src="/static/js/script.js"></script>
+</body>
+</html>
+{{end}}

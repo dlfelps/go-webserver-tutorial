@@ -1,0 +1,33 @@
+{{define "content"}}
+<div class="tutorial-page">
+    <h1>RESTful API Development</h1>
+    <p class="lead">Learn how to design and implement RESTful APIs with Go, including best practices for routing, data formats, and versioning.</p>
+    
+    <div class="level-indicator">
+        <span class="level advanced">Advanced</span>
+    </div>
+    
+    {{range .Tutorials}}
+    <section class="tutorial-section" id="{{.ID}}">
+        <h2>{{.Title}}</h2>
+        <div class="description">
+            {{.Description}}
+        </div>
+        
+        <div class="code-example">
+            <h3>Example Code</h3>
+            {{.Code}}
+        </div>
+        
+        <div class="explanation">
+            {{.Explanation}}
+        </div>
+    </section>
+    {{end}}
+    
+    <div class="navigation-buttons">
+        <a href="/advanced" class="btn btn-secondary">← Advanced Concepts</a>
+        <a href="/examples" class="btn">Code Examples →</a>
+    </div>
+</div>
+{{end}}

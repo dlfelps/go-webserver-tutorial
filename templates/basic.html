@@ -1,0 +1,33 @@
+{{define "content"}}
+<div class="tutorial-page">
+    <h1>Basic Web Server Concepts</h1>
+    <p class="lead">Learn the fundamentals of building web servers in Go, from a simple "Hello World" server to handling routes and serving static files.</p>
+    
+    <div class="level-indicator">
+        <span class="level beginner">Beginner</span>
+    </div>
+    
+    {{range .Tutorials}}
+    <section class="tutorial-section" id="{{.ID}}">
+        <h2>{{.Title}}</h2>
+        <div class="description">
+            {{.Description}}
+        </div>
+        
+        <div class="code-example">
+            <h3>Example Code</h3>
+            {{.Code}}
+        </div>
+        
+        <div class="explanation">
+            {{.Explanation}}
+        </div>
+    </section>
+    {{end}}
+    
+    <div class="next-steps">
+        <p>Now that you understand the basics, move on to:</p>
+        <a href="/intermediate" class="btn">Intermediate Concepts →</a>
+    </div>
+</div>
+{{end}}

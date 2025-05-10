@@ -1,0 +1,33 @@
+{{define "content"}}
+<div class="tutorial-page">
+    <h1>Advanced Web Server Concepts</h1>
+    <p class="lead">Master sophisticated techniques for building production-ready web servers, including JSON APIs, context handling, and graceful shutdown.</p>
+    
+    <div class="level-indicator">
+        <span class="level advanced">Advanced</span>
+    </div>
+    
+    {{range .Tutorials}}
+    <section class="tutorial-section" id="{{.ID}}">
+        <h2>{{.Title}}</h2>
+        <div class="description">
+            {{.Description}}
+        </div>
+        
+        <div class="code-example">
+            <h3>Example Code</h3>
+            {{.Code}}
+        </div>
+        
+        <div class="explanation">
+            {{.Explanation}}
+        </div>
+    </section>
+    {{end}}
+    
+    <div class="navigation-buttons">
+        <a href="/intermediate" class="btn btn-secondary">← Intermediate Concepts</a>
+        <a href="/restful" class="btn">RESTful APIs →</a>
+    </div>
+</div>
+{{end}}

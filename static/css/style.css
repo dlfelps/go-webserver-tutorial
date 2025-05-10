@@ -1,0 +1,459 @@
+:root {
+    --primary-color: #00ADD8; /* Go blue */
+    --primary-dark: #0092B5;
+    --secondary-color: #5DC9E2;
+    --accent-color: #FFD43B; /* Go yellow */
+    --text-color: #333;
+    --light-bg: #F5F5F5;
+    --white: #FFF;
+    --gray: #767676;
+    --light-gray: #EAEAEA;
+    --code-bg: #2D2D2D;
+    
+    --beginner-color: #4CAF50;
+    --intermediate-color: #2196F3;
+    --advanced-color: #FF5722;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--white);
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 0.5em;
+    line-height: 1.2;
+    font-weight: 600;
+}
+
+h1 {
+    font-size: 2.5rem;
+}
+
+h2 {
+    font-size: 2rem;
+    margin-top: 1.5em;
+}
+
+h3 {
+    font-size: 1.5rem;
+    margin-top: 1.2em;
+}
+
+p {
+    margin-bottom: 1em;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.lead {
+    font-size: 1.2rem;
+    color: var(--gray);
+    margin-bottom: 2em;
+}
+
+/* Header & Navigation */
+header {
+    background-color: var(--white);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 20px;
+}
+
+.logo h1 {
+    font-size: 1.5rem;
+    margin: 0;
+    color: var(--primary-color);
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav li {
+    margin-left: 1.5rem;
+}
+
+nav a {
+    color: var(--text-color);
+    font-weight: 500;
+    padding: 0.5rem 0;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s;
+}
+
+nav a:hover, nav a.active {
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+    text-decoration: none;
+}
+
+/* Main Content */
+main {
+    padding: 2rem 0;
+    min-height: calc(100vh - 140px);
+}
+
+/* Footer */
+footer {
+    background-color: var(--light-bg);
+    padding: 2rem 0;
+    text-align: center;
+    color: var(--gray);
+}
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: background-color 0.3s;
+    cursor: pointer;
+    border: none;
+    text-align: center;
+}
+
+.btn:hover {
+    background-color: var(--primary-dark);
+    text-decoration: none;
+}
+
+.btn-secondary {
+    background-color: var(--light-gray);
+    color: var(--text-color);
+}
+
+.btn-secondary:hover {
+    background-color: var(--gray);
+    color: var(--white);
+}
+
+/* Home Page */
+.hero {
+    text-align: center;
+    padding: 3rem 0;
+    background-color: var(--light-bg);
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.feature-card {
+    background-color: var(--white);
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.feature-card h2 {
+    margin-top: 0;
+    color: var(--primary-color);
+}
+
+.get-started {
+    text-align: center;
+    padding: 3rem 0;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border-radius: 8px;
+    margin-bottom: 3rem;
+}
+
+.get-started h2 {
+    margin-top: 0;
+}
+
+.get-started .btn {
+    background-color: var(--white);
+    color: var(--primary-color);
+    margin-top: 1rem;
+}
+
+.get-started .btn:hover {
+    background-color: var(--accent-color);
+}
+
+.why-go {
+    margin-bottom: 3rem;
+}
+
+.columns {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.learning-path {
+    margin-bottom: 3rem;
+}
+
+.path {
+    list-style-position: inside;
+    counter-reset: steps;
+}
+
+.path li {
+    margin-bottom: 1.5rem;
+    counter-increment: steps;
+}
+
+.path li a {
+    display: block;
+    background-color: var(--white);
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    color: var(--text-color);
+    position: relative;
+    padding-left: 3rem;
+    transition: transform 0.3s;
+}
+
+.path li a:hover {
+    transform: translateY(-3px);
+    text-decoration: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.path li a::before {
+    content: counter(steps);
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: var(--primary-color);
+    color: white;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.path li a h3 {
+    margin-top: 0;
+    color: var(--primary-color);
+}
+
+.path li a p {
+    margin-bottom: 0;
+}
+
+/* Tutorial Pages */
+.tutorial-page {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.level-indicator {
+    margin-bottom: 2rem;
+}
+
+.level {
+    display: inline-block;
+    padding: 0.3rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: white;
+}
+
+.beginner {
+    background-color: var(--beginner-color);
+}
+
+.intermediate {
+    background-color: var(--intermediate-color);
+}
+
+.advanced {
+    background-color: var(--advanced-color);
+}
+
+.tutorial-section {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--light-gray);
+}
+
+.tutorial-section:last-child {
+    border-bottom: none;
+}
+
+.code-example {
+    margin: 1.5rem 0;
+}
+
+pre {
+    border-radius: 8px;
+    overflow: auto;
+    max-height: 500px;
+}
+
+code {
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+    font-size: 0.9rem;
+}
+
+.explanation {
+    background-color: var(--light-bg);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-top: 1.5rem;
+}
+
+.explanation ul, .explanation ol {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.explanation li {
+    margin-bottom: 0.5rem;
+}
+
+.next-steps, .navigation-buttons {
+    margin-top: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.next-steps p {
+    margin-bottom: 0;
+    margin-right: 1rem;
+}
+
+/* Examples Page */
+.examples-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.example-card {
+    background-color: var(--white);
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.example-card h2 {
+    margin-top: 0;
+    color: var(--primary-color);
+}
+
+.example-card .description {
+    flex-grow: 1;
+    margin-bottom: 1.5rem;
+}
+
+.example-actions {
+    text-align: center;
+}
+
+.download-btn {
+    width: 100%;
+}
+
+.usage-guide {
+    background-color: var(--light-bg);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 3rem;
+}
+
+.usage-guide h2 {
+    margin-top: 0;
+}
+
+.usage-guide ol {
+    margin-left: 1.5rem;
+}
+
+.usage-guide code {
+    background-color: var(--white);
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    header .container {
+        flex-direction: column;
+    }
+    
+    nav {
+        margin-top: 1rem;
+        width: 100%;
+        overflow-x: auto;
+    }
+    
+    nav ul {
+        width: max-content;
+    }
+    
+    .navigation-buttons {
+        flex-direction: column;
+    }
+    
+    .navigation-buttons .btn {
+        margin-bottom: 1rem;
+        width: 100%;
+    }
+    
+    .features, .columns {
+        grid-template-columns: 1fr;
+    }
+}

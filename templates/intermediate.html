@@ -1,0 +1,33 @@
+{{define "content"}}
+<div class="tutorial-page">
+    <h1>Intermediate Web Server Concepts</h1>
+    <p class="lead">Build on your knowledge with more advanced techniques like HTML templates, form handling, and middleware.</p>
+    
+    <div class="level-indicator">
+        <span class="level intermediate">Intermediate</span>
+    </div>
+    
+    {{range .Tutorials}}
+    <section class="tutorial-section" id="{{.ID}}">
+        <h2>{{.Title}}</h2>
+        <div class="description">
+            {{.Description}}
+        </div>
+        
+        <div class="code-example">
+            <h3>Example Code</h3>
+            {{.Code}}
+        </div>
+        
+        <div class="explanation">
+            {{.Explanation}}
+        </div>
+    </section>
+    {{end}}
+    
+    <div class="navigation-buttons">
+        <a href="/basic" class="btn btn-secondary">← Basic Concepts</a>
+        <a href="/advanced" class="btn">Advanced Concepts →</a>
+    </div>
+</div>
+{{end}}

@@ -1,0 +1,36 @@
+{{define "content"}}
+<div class="examples-page">
+    <h1>Code Examples</h1>
+    <p class="lead">Download and study complete, working web server examples that demonstrate the concepts covered in the tutorials.</p>
+    
+    <div class="examples-list">
+        {{range .Examples}}
+        <div class="example-card">
+            <h2>{{.Title}}</h2>
+            <div class="description">
+                {{.Description}}
+            </div>
+            <div class="example-actions">
+                <a href="/download/{{.Filename}}" class="btn download-btn">Download</a>
+            </div>
+        </div>
+        {{end}}
+    </div>
+    
+    <div class="usage-guide">
+        <h2>How to Use These Examples</h2>
+        <ol>
+            <li>Download the example file</li>
+            <li>Create a directory for your project</li>
+            <li>Place the Go file in the directory</li>
+            <li>Create any necessary additional files (templates, static assets, etc.)</li>
+            <li>Run the example with <code>go run filename.go</code></li>
+        </ol>
+    </div>
+    
+    <div class="navigation-buttons">
+        <a href="/restful" class="btn btn-secondary">← RESTful APIs</a>
+        <a href="/" class="btn">Home</a>
+    </div>
+</div>
+{{end}}

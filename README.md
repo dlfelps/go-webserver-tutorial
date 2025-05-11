@@ -71,6 +71,7 @@ An educational web application that teaches users how to build web servers in Go
 │   ├── js/
 │   └── examples/       # Generated code examples
 ├── templates/          # HTML templates
+├── .github/            # GitHub Actions workflows
 ├── main.go             # Application entry point
 └── go.mod              # Go module definition
 ```

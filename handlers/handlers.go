@@ -136,8 +136,11 @@ func DownloadHandler(w http.ResponseWriter, r *http.Request) {
                 return
         }
         
+        // Get the example name (same as file name without extension for simplicity)
+        exampleName := strings.TrimSuffix(examplePath, filepath.Ext(examplePath))
+        
         // Validate the file path to prevent directory traversal
-        filePath := filepath.Join("static", "examples", examplePath)
+        filePath := filepath.Join("static", "examples", exampleName, examplePath)
         fileInfo, err := os.Stat(filePath)
         if err != nil || fileInfo.IsDir() {
                 http.NotFound(w, r)
@@ -162,8 +165,18 @@ func EnsureExamplesGenerated(examplesDir string) {
         // Generate all example files
         examples := content.GetCodeExamples()
         for _, example := range examples {
-                filePath := filepath.Join(examplesDir, example.Filename)
-                if _, err := os.Stat(filePath); os.IsNotExist(err) {
+                // Create a directory for each example based on filename without extension
+                exampleName := strings.TrimSuffix(example.Filename, filepath.Ext(example.Filename))
+                exampleDir := filepath.Join(examplesDir, exampleName)
+                
+                // Ensure the directory exists
+                if _, err := os.Stat(exampleDir); os.IsNotExist(err) {
+                        os.MkdirAll(exampleDir, 0755)
+                }
+                
+                // Write the file inside its own directory
+                filePath := filepath.Join(exampleDir, example.Filename)
+                if _, err := os.Stat(filePath); os.IsNotExist(err) || true { // Always write to ensure latest content
                         os.WriteFile(filePath, []byte(example.Code), 0644)
                 }
         }

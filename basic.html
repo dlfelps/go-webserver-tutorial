@@ -1,0 +1,226 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Web Server Concepts - Go Web Server Tutorial</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/prism.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Go Web Server Tutorial</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/" class="">Home</a></li>
+                    <li><a href="/basic" class="active">Basic Concepts</a></li>
+                    <li><a href="/intermediate" class="">Intermediate</a></li>
+                    <li><a href="/advanced" class="">Advanced</a></li>
+                    <li><a href="/restful" class="">RESTful APIs</a></li>
+                    <li><a href="/examples" class="">Examples</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        
+<div class="tutorial-page">
+    <h1>Basic Web Server Concepts</h1>
+    <p class="lead">Learn the fundamentals of building web servers in Go, from a simple "Hello World" server to handling routes and serving static files.</p>
+    
+    <div class="level-indicator">
+        <span class="level beginner">Beginner</span>
+    </div>
+    
+    
+    <section class="tutorial-section" id="hello-world">
+        <h2>Hello World Web Server</h2>
+        <div class="description">
+            
+				<p>This is the simplest possible web server in Go. It responds with "Hello, World!" to every request.</p>
+				<p>The <code>net/http</code> package provides all the functionality needed to create HTTP servers and clients.</p>
+			
+        </div>
+        
+        <div class="code-example">
+            <h3>Example Code</h3>
+            
+<pre><code class="language-go">
+package main
+
+import (
+	"fmt"
+	"net/http"
+)
+
+func main() {
+	// Handle all requests with the hello function
+	http.HandleFunc("/", hello)
+	
+	// Start the server on port 8080
+	fmt.Println("Server running at http://localhost:8080/")
+	http.ListenAndServe("localhost:8080", nil)
+}
+
+func hello(w http.ResponseWriter, r *http.Request) {
+	// Write a response to the client
+	fmt.Fprintf(w, "Hello, World!")
+}
+</code></pre>
+			
+        </div>
+        
+        <div class="explanation">
+            
+				<h4>How It Works:</h4>
+				<ul>
+					<li><code>http.HandleFunc("/")</code> registers a function to handle all requests to the root path.</li>
+					<li><code>http.ListenAndServe</code> starts an HTTP server listening on the specified address.</li>
+					<li>The second parameter to <code>ListenAndServe</code> is a handler. <code>nil</code> means use the default router.</li>
+					<li>Our <code>hello</code> function gets the <code>http.ResponseWriter</code> and <code>http.Request</code> parameters.</li>
+					<li>Using <code>fmt.Fprintf</code>, we write our response text to the response writer.</li>
+				</ul>
+			
+        </div>
+    </section>
+    
+    <section class="tutorial-section" id="serve-html">
+        <h2>Serving HTML Pages</h2>
+        <div class="description">
+            
+				<p>Most web servers need to serve HTML pages. Here's how to serve static HTML content in Go.</p>
+			
+        </div>
+        
+        <div class="code-example">
+            <h3>Example Code</h3>
+            
+<pre><code class="language-go">
+package main
+
+import (
+	"net/http"
+)
+
+func main() {
+	// Serve static files from the "static" directory
+	fs := http.FileServer(http.Dir("static"))
+	http.Handle("/static/", http.StripPrefix("/static/", fs))
+	
+	// Handle the home page
+	http.HandleFunc("/", homePage)
+	
+	// Start the server
+	http.ListenAndServe("localhost:8080", nil)
+}
+
+func homePage(w http.ResponseWriter, r *http.Request) {
+	// Serve the home page HTML file
+	http.ServeFile(w, r, "templates/index.html")
+}
+</code></pre>
+			
+        </div>
+        
+        <div class="explanation">
+            
+				<h4>How It Works:</h4>
+				<ul>
+					<li><code>http.FileServer</code> creates a handler that serves files from the given directory.</li>
+					<li><code>http.StripPrefix</code> removes the given prefix from the URL path before passing it to the handler.</li>
+					<li><code>http.ServeFile</code> serves a specific file in response to a request.</li>
+					<li>Static files (CSS, JavaScript, images) are served from the "static" directory.</li>
+					<li>HTML templates are served from the "templates" directory.</li>
+				</ul>
+			
+        </div>
+    </section>
+    
+    <section class="tutorial-section" id="handling-routes">
+        <h2>Handling Different URL Routes</h2>
+        <div class="description">
+            
+				<p>A web server needs to handle different routes (URLs) differently. Here's how to implement basic routing in Go.</p>
+			
+        </div>
+        
+        <div class="code-example">
+            <h3>Example Code</h3>
+            
+<pre><code class="language-go">
+package main
+
+import (
+	"fmt"
+	"net/http"
+)
+
+func main() {
+	// Register handlers for different routes
+	http.HandleFunc("/", homeHandler)
+	http.HandleFunc("/about", aboutHandler)
+	http.HandleFunc("/contact", contactHandler)
+	
+	// Start the server
+	fmt.Println("Server running at http://localhost:8080/")
+	http.ListenAndServe("localhost:8080", nil)
+}
+
+func homeHandler(w http.ResponseWriter, r *http.Request) {
+	// Ensure we're at the root path
+	if r.URL.Path != "/" {
+		http.NotFound(w, r)
+		return
+	}
+	fmt.Fprintf(w, "Welcome to the Home page!")
+}
+
+func aboutHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "About Us page")
+}
+
+func contactHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "Contact Us page")
+}
+</code></pre>
+			
+        </div>
+        
+        <div class="explanation">
+            
+				<h4>How It Works:</h4>
+				<ul>
+					<li>We register different handler functions for different URL paths using <code>http.HandleFunc</code>.</li>
+					<li>Each handler function can perform different actions based on the route.</li>
+					<li>In the <code>homeHandler</code>, we check if the path is exactly "/" and return a 404 error if not.</li>
+					<li>This is important because the "/" route matches all paths that don't match other routes.</li>
+					<li>For more complex routing, consider using router libraries like Gorilla Mux or Chi.</li>
+				</ul>
+			
+        </div>
+    </section>
+    
+    
+    <div class="next-steps">
+        <p>Now that you understand the basics, move on to:</p>
+        <a href="/intermediate" class="btn">Intermediate Concepts →</a>
+    </div>
+</div>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Go Web Server Tutorial. Created for educational purposes.</p>
+        </div>
+    </footer>
+
+    <script src="/static/js/prism.js"></script>
+    <script src="/static/js/script.js"></script>
+</body>
+</html>

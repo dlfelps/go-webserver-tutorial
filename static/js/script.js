@@ -1,9 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Set current year in footer - no longer needed since we're using server-side year
-    
     // Initialize Prism.js for syntax highlighting
-    if (typeof Prism !== 'undefined') {
-        Prism.highlightAll();
+    try {
+        if (typeof Prism !== 'undefined') {
+            Prism.highlightAll();
+        }
+    } catch (e) {
+        console.error("Prism initialization error:", e);
     }
     
     // Add smooth scrolling for anchor links

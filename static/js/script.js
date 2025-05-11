@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Set current year in footer
-    const currentYear = new Date().getFullYear();
-    const footerYear = document.querySelector('footer .container p');
-    if (footerYear) {
-        footerYear.innerHTML = footerYear.innerHTML.replace('{{.CurrentYear}}', currentYear);
+    // Set current year in footer - no longer needed since we're using server-side year
+    
+    // Initialize Prism.js for syntax highlighting
+    if (typeof Prism !== 'undefined') {
+        Prism.highlightAll();
     }
     
     // Add smooth scrolling for anchor links
